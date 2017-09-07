@@ -121,10 +121,10 @@ public class LoginActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
         }
-        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+        if (checkSelfPermission(INTERNET) == PackageManager.PERMISSION_GRANTED) {
             return true;
         }
-        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
+        if (shouldShowRequestPermissionRationale(INTERNET)) {
             Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
                     .setAction(android.R.string.ok, new View.OnClickListener() {
                         @Override
@@ -276,9 +276,63 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
+            String url = "http://servicioswebmoviles.hol.es/index.php/LOGIN_UBB";
+            RequestQueue queue = Volley.newRequestQueue(getApplication());
 
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("JSON",response);
+                            try{
+                                JSONObject resp = new JSONObject(response);
+                                if(resp.getBoolean("resp")){
+                                    String saludo = "Hola " + resp.getJSONObject("data").getString("nombres") + resp.getJSONObject("data").getString("apellidos") + "!!";
+                                    Snackbar bar = Snackbar.make(mEmailView, saludo, Snackbar.LENGTH_INDEFINITE);
+                                    bar.setAction(R.string.snackbar_close, new OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Toast toast = Toast.makeText(getApplication(), "Adios!!", Toast.LENGTH_LONG);
+                                            toast.show();
+                                        }
+                                    });
+                                    bar.show();
 
+                                } else if(resp.getString("info").equals("Contraseña Incorrecta")) {
+                                    mPasswordView.setError(getString(R.string.error_incorrect_password));
+                                    mPasswordView.requestFocus();
+                                } else if(resp.getString("info").equals("No ha enviado datos")){
+                                    Log.d("ERROR","sin datos");
+                                }else{
+                                    mEmailView.setError(getString(R.string.error_not_valid));
+                                    mPasswordView.setError(getString(R.string.error_not_valid));
+                                    mPasswordView.requestFocus();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            mAuthTask = null;
+                            showProgress(false);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("JSON","Error");
+                    mAuthTask = null;
+                    showProgress(false);
+                }
+            }){
+                @Override
+                protected Map<String,String> getParams(){
+                    Map<String,String> params = new HashMap<String, String>();
+                    params.put("login", mEmail);
+                    params.put("pass", mPassword);
 
+                    return params;
+                }
+            };
+
+            queue.add(stringRequest);
             return true;
         }
 
