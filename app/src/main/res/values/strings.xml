@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Iniciar Sesion</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Correo Electrónico</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Iniciar Sesión</string>
+    <string name="action_sign_in_short">Iniciar</string> <!-- texto para el boton de inicio en el teclado -->
+    <string name="error_invalid_email">Correo Inválido</string>
+    <string name="error_invalid_password">Contraseña muy corta</string>
+    <string name="error_incorrect_password">Contraseña Incorrecta</string>
+    <string name="error_field_required">Este campo es requerido</string>
+    <string name="error_not_valid">Crendenciales no válidas</string>
+    <string name="snackbar_close">Cerrar</string>
+    <string name="permission_rationale">Se requiere autorización para acceder a internet e iniciar sesión</string>
+</resources>
