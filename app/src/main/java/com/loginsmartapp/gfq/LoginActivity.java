@@ -3,6 +3,7 @@ package com.loginsmartapp.gfq;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -73,6 +74,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+
+    private LoginActivity loginActivity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -287,7 +290,7 @@ public class LoginActivity extends AppCompatActivity {
                             try{
                                 JSONObject resp = new JSONObject(response);
                                 if(resp.getBoolean("resp")){
-                                    String saludo = "Hola " + resp.getJSONObject("data").getString("nombres") + resp.getJSONObject("data").getString("apellidos") + "!!";
+                                    /*String saludo = "Hola " + resp.getJSONObject("data").getString("nombres") + resp.getJSONObject("data").getString("apellidos") + "!!";
                                     Snackbar bar = Snackbar.make(mEmailView, saludo, Snackbar.LENGTH_INDEFINITE);
                                     bar.setAction(R.string.snackbar_close, new OnClickListener() {
                                         @Override
@@ -296,7 +299,11 @@ public class LoginActivity extends AppCompatActivity {
                                             toast.show();
                                         }
                                     });
-                                    bar.show();
+                                    bar.show();*/
+                                    Intent main_activity = new Intent(loginActivity, MainActivity.class);
+                                    main_activity.putExtra("nombres",resp.getJSONObject("data").getString("nombres"));
+                                    main_activity.putExtra("apellidos",resp.getJSONObject("data").getString("apellidos"));
+                                    startActivity(main_activity);
 
                                 } else if(resp.getString("info").equals("Contraseña Incorrecta")) {
                                     mPasswordView.setError(getString(R.string.error_incorrect_password));

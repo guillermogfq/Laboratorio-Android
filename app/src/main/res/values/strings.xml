@@ -13,4 +13,5 @@
     <string name="error_not_valid">Crendenciales no válidas</string>
     <string name="snackbar_close">Cerrar</string>
     <string name="permission_rationale">Se requiere autorización para acceder a internet e iniciar sesión</string>
+    <string name="title_activity_main">Cámara</string>
 </resources>
