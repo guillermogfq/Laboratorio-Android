@@ -1,34 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context="com.loginsmartapp.gfq.MainActivity"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:showIn="@layout/activity_main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.loginsmartapp.gfq.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:text="Nombres"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nombres" />
+    <TextView
+        android:id="@+id/nombres"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="prueba"
+        android:textAlignment="center"
+        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/nombres"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="prueba" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Apellidos"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Apellidos" />
+    <TextView
+        android:id="@+id/apellidos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="prueba"
+        android:textAlignment="center"
+        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/apellidos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="prueba" />
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/imagephoto"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>
