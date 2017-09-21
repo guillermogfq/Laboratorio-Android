@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        TextView nombre = (TextView) findViewById(R.id.nombres);
+        TextView apellidos = (TextView) findViewById(R.id.apellidos);
+
+        nombre.setText(getIntent().getExtras().getString("nombres"));
+        apellidos.setText(getIntent().getExtras().getString("apellidos"));
     }
 
 }
